@@ -73,7 +73,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 controller: nameController,
                 decoration: InputDecoration(
                   hintText: "Enter your name !!",
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.person_2_outlined),
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(h * 0.02),
@@ -214,7 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account created successfully !!!')
                   )
                   );
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent.shade700,
@@ -234,9 +234,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Text('Already have an account?',style: TextStyle(
                   fontSize: h*0.02
                 ),),
-                TextButton(onPressed: (
-        
-                    ){
+                TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()
+                  )
+                  );
                 }, child: Text('Login',style: TextStyle(
                   fontSize: h*0.02,
                   color: Colors.blueAccent.shade700
