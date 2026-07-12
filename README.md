@@ -1,12 +1,15 @@
 # 🛒 Flutter Shopping App
 
-A modern Flutter Shopping App built with **Flutter** and **Dart**, featuring a responsive UI, user authentication using **SharedPreferences**, and a clean project structure. This project is being developed step by step while following Flutter best practices.
+A modern Flutter Shopping App built with **Flutter** and **Dart**, featuring a responsive UI, local authentication using **SharedPreferences**, REST API integration, **Provider State Management**, and a clean project architecture. This project is being developed step by step while following Flutter best practices and clean coding principles.
 
 ---
 
-## 📱 Features
+# 🚀 Development Progress
 
-### ✅ Authentication
+## ✅ Completed Features
+
+- Splash Screen
+- Onboarding Screen
 - User Signup
 - User Login
 - Login with Email or Phone Number
@@ -15,104 +18,169 @@ A modern Flutter Shopping App built with **Flutter** and **Dart**, featuring a r
 - Password Confirmation Validation
 - Show/Hide Password
 - Persistent User Data
+- Responsive UI
+- Home Screen
+- Search Bar
+- Promotional Banner
+- Categories Section
+- View All Categories Screen
+- Categories REST API Integration
+- Dynamic Category Images
+- Provider State Management
 
-### 🎨 UI
-- Splash Screen
-- Onboarding Screen
-- Login Screen
-- Signup Screen
-- Responsive Design
-- Material Design UI
+## 🔄 Currently Working On
+
+- Products Listing by Category
 
 ---
 
-## 🛠️ Tech Stack
+# 📱 Features
+
+## 🔐 Authentication
+
+- User Signup
+- User Login
+- Login using Email or Phone Number
+- SharedPreferences Authentication
+- Form Validation
+- Password Confirmation Validation
+- Show/Hide Password
+- Persistent User Data
+
+---
+
+## 🏠 Home
+
+- Beautiful Home Screen
+- Search Bar
+- Promotional Banner
+- Categories Section
+- View All Categories
+- Dynamic Category Images
+- Responsive UI
+
+---
+
+## 🌐 API Integration
+
+- Categories API
+- Dynamic Category Images
+- REST API Integration
+- HTTP Package
+
+---
+
+## ⚙️ State Management
+
+- Provider
+- Clean Architecture
+- Separation of UI, Services, Models and Providers
+
+---
+
+# 🛠️ Tech Stack
 
 - Flutter
 - Dart
+- Provider
+- REST API
+- HTTP Package
 - SharedPreferences
+- Material Design
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
+```text
 lib/
+│
+├── models/
+│   └── category_model.dart
+│
+├── providers/
+│   └── category_provider.dart
+│
+├── services/
+│   └── category_service.dart
 │
 ├── screens/
 │   ├── splash_screen.dart
 │   ├── onboarding_screen.dart
 │   ├── signin_screen.dart
 │   ├── signup_screen.dart
-│   └── home_screen.dart
+│   ├── home_screen.dart
+│   └── all_categories_screen.dart
 │
 └── main.dart
 ```
 
 ---
 
-## 📸 Screens
+# 📸 Screens
 
 - 🚀 Splash Screen
 - 📖 Onboarding Screen
 - 👤 Signup Screen
 - 🔐 Login Screen
+- 🏠 Home Screen
+- 📂 All Categories Screen
 
-> Screenshots will be added after completing the Home Screen.
+> More screenshots will be added after Product Listing is completed.
 
 ---
 
-## 🚧 Upcoming Features
+# 📚 Packages Used
 
-- 🏠 Home Screen
+| Package | Purpose |
+|----------|----------|
+| provider | State Management |
+| http | REST API Integration |
+| shared_preferences | Local User Authentication |
+| google_fonts | Custom Fonts |
+
+---
+
+# 🚧 Upcoming Features
+
 - 📦 Product Listing
-- 🌐 REST API Integration
+- ⭐ Product Details
 - ❤️ Wishlist
-- 🛒 Cart Management
+- 🛒 Shopping Cart
 - 🔍 Product Search
 - 👤 User Profile
-- 🌙 Dark Mode
-- ❤️ Favorite Products
-- 📂 Categories
 - 💳 Checkout
 - 🔔 Notifications
-- ⭐ Product Details
 - 📱 Bottom Navigation Bar
 - 📍 Address Management
 - 🚚 Order Tracking
-- 🔥 State Management using Provider
+- 🌙 Dark Mode
+- 🔥 Firebase Authentication
+- ☁️ Cloud Database Integration
 
 ---
 
-## 📚 Packages Used
+# 🚀 Getting Started
 
-| Package | Purpose |
-|---------|----------|
-| shared_preferences | Store user authentication data locally |
-
----
-
-## 🚀 Getting Started
-
-Clone the repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/ShahzaibAliofficial/flutter-shopping-app.git
 ```
 
-Go to project folder
+### Navigate to project folder
 
 ```bash
 cd flutter-shopping-app
 ```
 
-Install dependencies
+### Install dependencies
 
 ```bash
 flutter pub get
 ```
 
-Run the application
+### Run the application
 
 ```bash
 flutter run
@@ -120,22 +188,46 @@ flutter run
 
 ---
 
-## 👨‍💻 Developer
+# 🎯 Learning Objectives
 
-**Shahzaib Ali**
+This project demonstrates:
+
+- Flutter UI Development
+- Responsive Design
+- SharedPreferences Authentication
+- REST API Integration
+- Provider State Management
+- JSON Parsing
+- Network Image Loading
+- Clean Project Structure
+- Best Flutter Practices
+
+---
+
+# 👨‍💻 Developer
+
+## Shahzaib Ali
 
 Flutter Developer
 
-GitHub:
+### GitHub
+
 https://github.com/ShahzaibAliofficial
 
-LinkedIn:
+### LinkedIn
+
 https://www.linkedin.com/in/shahzaib-ali-appdeveloper
 
 ---
 
-## ⭐ Project Status
+# ⭐ Project Status
 
-🚧 Currently Under Development
+🚧 **Currently Under Development**
 
-The project is actively being developed by adding new features step by step following clean coding practices and Flutter best practices.
+This project is continuously being improved by implementing new features, enhancing the UI, integrating APIs, and following Flutter best practices with clean architecture.
+
+---
+
+## 🌟 If you like this project
+
+Give this repository a ⭐ on GitHub and follow for future updates.
