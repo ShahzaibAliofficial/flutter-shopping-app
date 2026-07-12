@@ -28,7 +28,7 @@ class CategoryService {
     if(response.statusCode == 200){
       final data = jsonDecode(response.body);
 
-      return data['products'][1]['thumbnail'];
+      return data['products'][2]['thumbnail'];
     }
     throw Exception('Failes to load category image');
   }

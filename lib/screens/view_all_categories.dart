@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shahz_cart_shopping_app/providers/category_provider.dart';
+import 'package:shahz_cart_shopping_app/screens/products_screen.dart';
 import 'package:shahz_cart_shopping_app/services/category_service.dart';
+
+import '../providers/product_provider.dart';
 
 class allCategoriesScreen extends StatelessWidget {
   @override
@@ -30,32 +33,39 @@ class allCategoriesScreen extends StatelessWidget {
               final category = provider.Categories[index];
               final categoryService = CategoryService();
 
-              return Card(
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(15),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FutureBuilder<String>(
-                      future: categoryService.getCategoryImage(category.slug),
-                      builder: (context, snapshot) {
-                        if(snapshot.connectionState == ConnectionState.waiting){
-                          return CircularProgressIndicator();
-                        }
-                        if(snapshot.hasError){
-                          return const Icon(Icons.error);
-                        }
-                        return Image.network(snapshot.data!);
+              return InkWell(
+                      onTap: ()async{
+                        await context.read<ProductProvider>().fetchProducts(category.slug);
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen()));
                       },
-                    ),
-                    Text(category.name,textAlign: TextAlign.center,style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),)
-                  ],
+                child: Card(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(15),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FutureBuilder<String>(
+                        future: categoryService.getCategoryImage(category.slug),
+                        builder: (context, snapshot) {
+                          if(snapshot.connectionState == ConnectionState.waiting){
+                            return CircularProgressIndicator();
+                          }
+                          if(snapshot.hasError){
+                            return const Icon(Icons.error);
+                          }
+                          return Image.network(snapshot.data!);
+                        },
+                      ),
+                      Text(category.name,textAlign: TextAlign.center,style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),)
+                    ],
                 ),
+                )
               );
+
             },
           );
         },

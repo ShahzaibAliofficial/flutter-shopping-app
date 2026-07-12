@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shahz_cart_shopping_app/providers/category_provider.dart';
+import 'package:shahz_cart_shopping_app/providers/product_provider.dart';
+import 'package:shahz_cart_shopping_app/screens/products_screen.dart';
 import 'view_all_categories.dart';
+import 'package:shahz_cart_shopping_app/services/category_service.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -120,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              height: h*0.15,
+              height: h*0.2,
               child: Consumer<CategoryProvider>(
                   builder: (context, provider, child){
                     if(provider.isLoading){
@@ -134,19 +138,39 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: itemCount,
                         itemBuilder: (context, index){
                           final category = provider.Categories[index];
-        
-                          return Container(
-                            width: 100,
-                            margin: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35,
-                                  child: Icon(Icons.category),
-                                ),
-                                SizedBox(height: 8,),
-                                Text(category.name,textAlign: TextAlign.center,)
-                              ],
+                          final categoryService = CategoryService();
+                          return InkWell(
+                            onTap: () async {
+                              try{
+                              await context.read<ProductProvider>().fetchProducts(category.slug);
+
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen()));
+                            }catch(e){
+                                print("Error: $e");
+                              }
+                            },
+                            child: Container(
+                              width: 100,
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Column(
+                                children: [
+                                  FutureBuilder(
+                                      future: categoryService.getCategoryImage(category.slug), builder: (context , snapshot){
+                                        if(snapshot.connectionState == ConnectionState.waiting){
+                                          return CircularProgressIndicator();
+                                        }
+                                        if(snapshot.hasError){
+                                          return Icon(Icons.error);
+                                        }
+                                        return CircleAvatar(
+                                          radius: h*0.06,
+                                            backgroundColor: Colors.blueGrey.shade50,
+                                            child: Image.network(snapshot.data!));
+                                  }),
+                                  SizedBox(height: 8,),
+                                  Text(category.name,textAlign: TextAlign.center,)
+                                ],
+                              ),
                             ),
                           );
                         }
