@@ -50,17 +50,33 @@ This project is being developed step by step while following **Flutter best prac
 
 ### Product Module
 - Product Model
+- Review Model
 - Product Service
 - Product Provider
 - Category-wise Product Fetching
+- Professional Product Cards
+- Product Detail Screen
+- Image Carousel
+- Smooth Page Indicator
+- Product Availability Status
+- Stock Information
+- Brand & Category
+- Product Rating
+- Discount Badge
+- Shipping Information
+- Warranty Information
+- Quantity Selector
+- Return Policy
+- Product Description
 
 ---
 
 # 🔄 Currently Working On
 
-- Professional Product Listing UI
-- Product Cards
-- Product Details Screen
+- Customer Reviews Section
+- Add to Cart Functionality
+- Wishlist
+- Buy Now Button
 
 ---
 
@@ -94,11 +110,23 @@ This project is being developed step by step while following **Flutter best prac
 ## 📦 Products
 
 - Category-wise Products
-- Product Images
-- Product Title
+- Professional Product Cards
+- Product Detail Screen
+- Multiple Product Images
+- Image Carousel
+- Smooth Page Indicator
+- Product Availability Status
+- Stock Information
 - Brand
-- Price
-- Rating
+- Category
+- Product Price
+- Discount Percentage
+- Product Rating
+- Quantity Selector
+- Shipping Information
+- Warranty Information
+- Return Policy
+- Product Description
 
 ---
 
@@ -111,6 +139,7 @@ This project is being developed step by step while following **Flutter best prac
 - HTTP Requests
 
 API Source:
+
 https://dummyjson.com/
 
 ---
@@ -134,6 +163,8 @@ https://dummyjson.com/
 - HTTP
 - SharedPreferences
 - Google Fonts
+- Carousel Slider
+- Smooth Page Indicator
 - Material Design
 
 ---
@@ -145,7 +176,8 @@ lib/
 │
 ├── models/
 │   ├── category_model.dart
-│   └── product_model.dart
+│   ├── product_model.dart
+│   └── review_model.dart
 │
 ├── providers/
 │   ├── category_provider.dart
@@ -162,7 +194,8 @@ lib/
 │   ├── login_screen.dart
 │   ├── home_screen.dart
 │   ├── all_categories_screen.dart
-│   └── products_screen.dart
+│   ├── products_screen.dart
+│   └── product_detail_screen.dart
 │
 └── main.dart
 ```
@@ -178,8 +211,9 @@ lib/
 - 🏠 Home Screen
 - 📂 All Categories Screen
 - 📦 Products Screen
+- 🛍️ Product Details Screen
 
-> More screenshots will be added after completing the Product Details module.
+> More screenshots will be added after completing Wishlist, Cart and Checkout modules.
 
 ---
 
@@ -191,34 +225,40 @@ lib/
 | http | REST API Integration |
 | shared_preferences | Local Authentication |
 | google_fonts | Custom Fonts |
+| carousel_slider | Product Image Slider |
+| smooth_page_indicator | Carousel Indicator |
 
 ---
 
 # 🚧 Upcoming Features
 
-### Products
-- Professional Product Cards
-- Product Details Screen
-- Multiple Product Images
-- Product Description
+## 🛍️ Products
 
-### Shopping
+- Customer Reviews
+- Related Products
+- Image Zoom
+
+## 🛒 Shopping
+
 - Add to Cart
 - Shopping Cart
-- Quantity Management
+- Buy Now
 - Checkout
 
-### User
+## 👤 User
+
 - Wishlist
 - User Profile
 - Logout
 - Edit Profile
 
-### Search
+## 🔍 Search
+
 - Live Product Search
 - Category Filtering
 
-### Extras
+## ✨ Extras
+
 - Bottom Navigation Bar
 - Notifications
 - Dark Mode
@@ -269,6 +309,8 @@ This project demonstrates:
 - SharedPreferences
 - Clean Architecture
 - Network Image Loading
+- Image Carousel
+- Professional Product UI
 - MVVM-inspired Structure
 - Professional Flutter Development
 
