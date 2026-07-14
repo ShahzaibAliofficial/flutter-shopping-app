@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               try{
                               await context.read<ProductProvider>().fetchProducts(category.slug);
 
-                              Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen(categoryName: category.name,)));
                             }catch(e){
                                 print("Error: $e");
                               }

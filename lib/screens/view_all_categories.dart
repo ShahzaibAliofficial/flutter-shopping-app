@@ -36,7 +36,7 @@ class allCategoriesScreen extends StatelessWidget {
               return InkWell(
                       onTap: ()async{
                         await context.read<ProductProvider>().fetchProducts(category.slug);
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => ProductsScreen(categoryName: category.name,)));
                       },
                 child: Card(
                   elevation: 3,

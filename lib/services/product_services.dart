@@ -13,6 +13,7 @@ class ProductServices {
   if(response.statusCode == 200){
     final data = jsonDecode(response.body);
     final List products = data ['products'];
+
     return products.map((e) => ProductModel.fromJson(e)).toList();
   }
   throw Exception('Failed to load products');
