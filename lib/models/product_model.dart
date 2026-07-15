@@ -17,6 +17,8 @@ class ProductModel {
   final String warrantyInformation;
   final String returnPolicy;
   final int minimumOrderQuantity;
+  final String barcode;
+  final String qrCode;
   final List<ReviewModel>reviews;
   ProductModel({
     required this.id,
@@ -35,10 +37,12 @@ class ProductModel {
     required this.returnPolicy,
     required this.shippingInformation,
     required this.warrantyInformation,
-    required this.reviews
-
+    required this.reviews,
+    required this.barcode,
+    required this.qrCode,
   });
   factory ProductModel.fromJson(Map<String, dynamic> json) {
+
     return ProductModel(
       id: json['id'] ?? '',
       title: json['title'] ?? '',
@@ -50,6 +54,8 @@ class ProductModel {
       description: json['description'] ?? '',
       images: List<String>.from(json['images']?? []),
       stock: json['stock'] ?? '',
+      barcode: json['meta']?['barcode'] ?? '',
+      qrCode: json['meta']['qrCode'],
       discountPercentage: (json['discountPercentage'] as num).toDouble(),
       availabilityStatus: json['availabilityStatus'] ?? '',
       minimumOrderQuantity: json['minimumOrderQuantity'] ?? '',

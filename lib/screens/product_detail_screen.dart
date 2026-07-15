@@ -2,8 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shahz_cart_shopping_app/models/product_model.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:intl/intl.dart';
+
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductModel product;
@@ -12,7 +13,6 @@ class ProductDetailScreen extends StatefulWidget {
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
-
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int quantity = 1;
   int activeIndex = 0;
@@ -438,20 +438,33 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(0)),
                 ),
                 elevation: 8,
-              ),
-            ),
-            Container(
-              width: w*0.95,
-              height: h*0.1,
-              child: Card(
-                margin: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(7),
-                        bottomLeft: Radius.circular(7)
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                            padding:  EdgeInsets.only(top: h*0.03),
+                          child: Icon(Icons.barcode_reader),
+                        ),
+                        SizedBox(
+                          width: w*0.02,
+                        ),
+                        Text('Barcode',style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),)
+                      ],
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.only(left: w*0.08),
+                      child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(widget.product.barcode,style: TextStyle(
+
+                          ),)),
                     )
+                  ],
                 ),
-                elevation: 3,
               ),
             ),
             SizedBox(height: h * 0.03),
@@ -470,9 +483,84 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
             SizedBox(height: h * 0.02),
             Padding(
-              padding: EdgeInsets.only(left: w * 0.03),
+              padding: EdgeInsets.only(left: w* 0.03),
               child: Text(widget.product.description),
             ),
+            SizedBox(
+              height: h*0.03,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: w* 0.03),
+              child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Row(
+                    children: [
+                      Text('Customer Reviews',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: h * 0.025,
+                      ),),
+                     Text(' (${widget.product.reviews.length})',style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                       fontSize: h * 0.025,
+                     ),)
+                    ],
+                  )
+              ),
+            ),
+            SizedBox(
+              height: h*0.03,
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: widget.product.reviews.length,
+                itemBuilder: (context, index){
+                   final review = widget.product.reviews[index];
+                   final formattedDate = DateFormat('dd MMM yyy').format(DateTime.parse(review.date));
+                   return Container(
+                     width: w*0.9,
+                     height: h*0.2,
+                     child: Card(
+                       elevation: 5,
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           ListTile(
+                             leading: CircleAvatar(
+                               radius: h*0.03,
+                               backgroundColor: Colors.blueGrey.shade100,
+                               child: Text(review.reviewerName[0],style: TextStyle(
+                                   fontWeight: FontWeight.bold,
+                                 color: Colors.black
+                               ),),
+                             ),
+                           title: Text(review.reviewerName,style: TextStyle(
+                             fontWeight: FontWeight.bold
+                           ),),
+                             trailing: Row(
+                               mainAxisSize: MainAxisSize.min,
+                               children: List.generate(5, (index){
+                                 if(index < review.rating){
+                                   return Icon(Icons.star,color: Colors.amber,size: h*0.025,);
+                                 }
+                                 else{
+                                   return Icon(Icons.star,size: h*0.025,color: Colors.grey.shade400,);
+
+                                 }
+                               })
+                             ),
+                             subtitle: Text(formattedDate),
+                           ),
+                           Padding(
+                             padding:  EdgeInsets.only(left: w*0.22),
+                             child: Align(
+                                 alignment: Alignment.topLeft,
+                                 child: Text(review.comment)),
+                           )
+                         ],
+                       ),
+                     ),
+                   );
+                })
           ],
         ),
       ),
