@@ -10,7 +10,8 @@ class CategoryService {
 
   Future<List<CategoryModel>> getCategories()async{
     final response = await http.get(Uri.parse(baseUrl));
-
+    print("Status Code: ${response.statusCode}");
+    print("Response: ${response.body}");
 
     if(response.statusCode == 200){
 

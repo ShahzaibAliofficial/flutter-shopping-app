@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shahz_cart_shopping_app/models/product_model.dart';
+import 'package:shahz_cart_shopping_app/screens/home_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
-
+import 'package:shahz_cart_shopping_app/providers/wish_list_provider.dart';
+import 'package:shahz_cart_shopping_app/screens/favorite_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductModel product;
@@ -19,6 +22,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final wishlistProvider = Provider.of<WishListProvider>(context);
+
+    bool isFavorite =
+      wishlistProvider.wishlist.contains(widget.product);
+
+
     Color bgColour;
     Color txtColour;
 
@@ -41,10 +50,32 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       bgColour1 = Colors.transparent;
       txtColour1 = Colors.transparent;
     }
+
+    Color favoriteColor;
+    IconData favoriteIcon;
+    if(isFavorite){
+      favoriteIcon = Icons.favorite;
+      favoriteColor = Colors.red;
+    }
+    else{
+      favoriteIcon = Icons.favorite_outline_sharp;
+      favoriteColor = Colors.red;
+    }
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.product.title), centerTitle: true),
+      appBar: AppBar(
+          title: Text(widget.product.title), centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){
+            wishlistProvider.toggleWishlist(widget.product);
+          }, icon: Icon(favoriteIcon,
+      color: favoriteColor,
+    ),
+          )
+        ],
+      ),
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -512,6 +543,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
             ListView.builder(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: widget.product.reviews.length,
                 itemBuilder: (context, index){
                    final review = widget.product.reviews[index];
@@ -564,6 +596,65 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ],
         ),
       ),
+
+
+
+    bottomNavigationBar: Container(
+      height: h*0.1,
+      child: Row(
+        children: [
+          Padding(
+            padding:  EdgeInsets.only(left: w*0.05),
+            child: Container(
+              height: h*0.06,
+              width: w*0.12,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(h*0.008)
+              ),
+              child: IconButton(onPressed: (){
+
+              }, icon: Icon(Icons.add_shopping_cart_outlined,size:  h*0.035,)),
+            ),
+          ),
+          SizedBox(
+            width: w*0.02,
+          ),
+          Container(
+            height: h*0.06,
+            width: w*0.37,
+
+            child: ElevatedButton(onPressed: (){
+            },style: ElevatedButton.styleFrom(
+
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(h*0.008),
+                side: BorderSide(color: Colors.blueAccent.shade700)
+              )
+            ), child: Text('Add to Cart',style: TextStyle(
+              color: Colors.blueAccent.shade700,
+                fontSize: h*0.019
+            ),)),
+          ),
+          SizedBox(
+            width: w*0.02,
+          ),
+          Container(
+              height: h*0.06,
+              width: w*0.37,
+              child: ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.circular(h*0.008),
+                ),
+                backgroundColor: Colors.blueAccent.shade700
+              ), child: Text('Buy Now',style: TextStyle(
+                color: Colors.white,
+                fontSize: h*0.019
+              ),)))
+        ],
+      ),
+    ),
+
     );
   }
 }
