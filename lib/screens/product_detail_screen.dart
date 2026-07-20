@@ -3,11 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shahz_cart_shopping_app/models/product_model.dart';
+import 'package:shahz_cart_shopping_app/screens/cart_item_screen.dart';
 import 'package:shahz_cart_shopping_app/screens/home_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
 import 'package:shahz_cart_shopping_app/providers/wish_list_provider.dart';
 import 'package:shahz_cart_shopping_app/screens/favorite_screen.dart';
+import 'package:shahz_cart_shopping_app/providers/cart_item_provider.dart';
+import 'package:shahz_cart_shopping_app/screens/cart_item_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductModel product;
@@ -23,6 +26,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final wishlistProvider = Provider.of<WishListProvider>(context);
+    final cartProvider = Provider.of<CartItemProvider>(context);
+
 
     bool isFavorite =
       wishlistProvider.wishlist.contains(widget.product);
@@ -613,7 +618,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 borderRadius: BorderRadius.circular(h*0.008)
               ),
               child: IconButton(onPressed: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CartItemScreen()));
               }, icon: Icon(Icons.add_shopping_cart_outlined,size:  h*0.035,)),
             ),
           ),
@@ -625,6 +630,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             width: w*0.37,
 
             child: ElevatedButton(onPressed: (){
+              cartProvider.addToCart(widget.product, quantity);
             },style: ElevatedButton.styleFrom(
 
               shape: RoundedRectangleBorder(
