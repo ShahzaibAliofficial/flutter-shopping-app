@@ -11,6 +11,7 @@ import 'package:shahz_cart_shopping_app/providers/wish_list_provider.dart';
 import 'package:shahz_cart_shopping_app/screens/favorite_screen.dart';
 import 'package:shahz_cart_shopping_app/providers/cart_item_provider.dart';
 import 'package:shahz_cart_shopping_app/screens/cart_item_screen.dart';
+import 'package:shahz_cart_shopping_app/screens/checkout_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductModel product;
