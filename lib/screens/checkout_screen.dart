@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shahz_cart_shopping_app/providers/cart_item_provider.dart';
 import 'package:provider/provider.dart';
 import 'product_detail_screen.dart';
+import 'order_success_screen.dart';
+
 
 class CheckoutScreen  extends StatelessWidget{
   @override
@@ -326,6 +328,7 @@ class CheckoutScreen  extends StatelessWidget{
                   height: h * 0.07,
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderSuccessScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent.shade700,
