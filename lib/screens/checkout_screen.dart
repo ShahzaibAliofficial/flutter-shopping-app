@@ -4,14 +4,14 @@ import 'package:shahz_cart_shopping_app/providers/cart_item_provider.dart';
 import 'package:provider/provider.dart';
 import 'product_detail_screen.dart';
 import 'order_success_screen.dart';
-
+import 'dart:math';
 
 class CheckoutScreen  extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-
+    final orderId = "ORD${100000 + Random().nextInt(9000000)}";
     final cartProvider = Provider.of<CartItemProvider>(context);
     double totalprice = 0;
     for (var item in cartProvider.cart) {
@@ -24,7 +24,10 @@ class CheckoutScreen  extends StatelessWidget{
               item.quantity;
     }
     double finalTotal = totalprice - totalDiscount;
-
+    int totalItem = 0;
+    for(var item in cartProvider.cart){
+      totalItem += item.quantity;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Checkout',style: GoogleFonts.abrilFatface(),),
@@ -328,7 +331,8 @@ class CheckoutScreen  extends StatelessWidget{
                   height: h * 0.07,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OrderSuccessScreen()));
+                      cartProvider.clearCart();
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => OrderSuccessScreen(orderId: orderId,totalItem: totalItem,)));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent.shade700,
